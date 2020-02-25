@@ -10,6 +10,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
+
 const PORT = process.env.PORT || 3001;
 
 app.get('/', renderHomePage);
@@ -17,11 +18,12 @@ app.get('/newsearch', newSearch);
 app.post('/searches', collectFormData);
 
 function renderHomePage(request, response){
-    response.render('./index.ejs');
+console.log('i am broken pls halp')
+    response.render('./pages/index.ejs');
 }
 
 function newSearch(request, response){
-    response.render('./index.ejs');
+    response.render('./pages/index.ejs');
 }
 
 function collectFormData(request, response){
