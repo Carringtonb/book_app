@@ -18,12 +18,12 @@ app.get('/newsearch', newSearch);
 app.post('/searches', collectFormData);
 
 function renderHomePage(request, response){
-console.log('i am broken pls halp')
+// console.log('i am broken pls halp')
     response.render('./pages/index.ejs');
 }
 
 function newSearch(request, response){
-    response.render('./pages/index.ejs');
+    response.render('./pages/searches/show.ejs');
 }
 
 function collectFormData(request, response){
