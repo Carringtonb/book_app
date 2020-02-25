@@ -19,11 +19,11 @@ app.post('/searches', collectFormData);
 
 function renderHomePage(request, response){
 // console.log('i am broken pls halp')
-    response.render('./pages/index.ejs');
+    response.render('./pages/searches/show.ejs');
 }
 
 function newSearch(request, response){
-    response.render('./pages/searches/show.ejs');
+    response.render('./pages/index.ejs');
 }
 
 function collectFormData(request, response){
@@ -36,21 +36,32 @@ function collectFormData(request, response){
     if(isAuthorOrTitle === 'title'){
         url += `+intitle:${nameOfBookOrAuthor}`;
     } else if (isAuthorOrTitle === 'author'){
-        url += `+inauthor:${nameOfBookOrAuthor}`;
+        url += `+inauthor:${nameOfBookOrAuthor}`;c
     }
-
     superagent.get(url)
         .then(results => {
             let resultsArray = results.body.items;
             const finalArray = resultsArray.map(book =>{
-                new Book(book.volumeInfo);
+                return new Book(book.volumeInfo);
             })
-            response.render('./show.ejs', {books: finalArray});
+            resultsArray.forEach(result => {
+                console.log(result);
+            })
+            response.render('./pages/searches/show.ejs', {books: finalArray});
         })
 }
 
     function Book(obj){
         this.title = obj.title || 'no title available';
+        this.authors = obj.authors || 'no author available';
+        this.description = obj.description || 'no description'
+        // if(obj.imageLinks.thumbnail === 'undefined'){
+        //     this.image = 'https://i.imgur.com/J5LVHEL.jpg'
+        // } else {
+        //     this.image = obj.imageLinks.thumbnail.replace('http:', 'https:');
+        // }
+        this.image = (obj.imageLinks) ? obj.imageLinks.thumbnail.replace('http:', 'https:') : 'https://i.imgur.com/J5LVHEL.jpg';
+        
     }
 
     app.listen(PORT, () =>{
