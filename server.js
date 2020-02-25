@@ -5,6 +5,10 @@ const express = require('express');
 const app = express();
 require('ejs');
 const superagent = require('superagent');
+const pg = require('pg');
+
+const client = new.pgCline(process.env.DATABASE_URL);
+client.on('error', err => console.error(err));
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
@@ -55,15 +59,14 @@ function collectFormData(request, response){
         this.title = obj.title || 'no title available';
         this.authors = obj.authors || 'no author available';
         this.description = obj.description || 'no description'
-        // if(obj.imageLinks.thumbnail === 'undefined'){
-        //     this.image = 'https://i.imgur.com/J5LVHEL.jpg'
-        // } else {
-        //     this.image = obj.imageLinks.thumbnail.replace('http:', 'https:');
-        // }
         this.image = (obj.imageLinks) ? obj.imageLinks.thumbnail.replace('http:', 'https:') : 'https://i.imgur.com/J5LVHEL.jpg';
         
     }
 
+    client.connect()
+        .then(()=>{
     app.listen(PORT, () =>{
         console.log(`listening on ${PORT}`);
     })
+        })
+    .catch(console.error(error));
