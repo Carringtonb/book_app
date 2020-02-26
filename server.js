@@ -20,16 +20,21 @@ const PORT = process.env.PORT || 3001;
 app.get('/', renderHomePage);
 app.get('/newsearch', newSearch);
 app.post('/searches', collectFormData);
-// app.post('/newsearch', addBooks);
+// app.post('/searches', addBooks);
 app.get('*', (request, response) => {
   response.status(404).send('this page does not exist')
 })
 
 function renderHomePage(request, response){
-// console.log('i am broken pls halp')
-    response.render('./pages/searches/show.ejs');
-}
+     let sql = 'SELECT * FROM books;';
 
+  client.query(sql)
+    .then(results => {
+      let books = results.rows;
+      console.log(books, 'hi tedward');
+    response.render('pages/index.ejs', {bookArray: books});
+    });
+}
 function newSearch(request, response){
     response.render('./pages/index.ejs');
 }
@@ -53,8 +58,6 @@ function collectFormData(request, response){
                 return new Book(book.volumeInfo);
             })
                 console.log(finalArray, 'looking for isbn');
-            // resultsArray.forEach(result => {
-            // })
             response.render('./pages/searches/show.ejs', {books: finalArray});
         })
 }
@@ -67,29 +70,25 @@ function collectFormData(request, response){
         this.isbn = obj.industryIdentifiers[0].identifier || 'null';
     }
 
-    // function addBooks(request, response){
-    //     let {title, authors, description, image, isbn} = finalArray;
+    function addBooks(request, response){
+        let {title, authors, description, image, isbn} = finalArray;
+    console.log(title, 'title');
+        let sql = 'INSERT INTO books (title, authors, description, image_URL, ISBN13) VALUES ($1, $2, $3, $4, $5);';
+        let safeValues = [title, authors, description, image_URL, ISBN13];
 
-    //     let sql = 'INSERT INTO books ('title, authors, description, image_URL, isbn13') VALUES ($1, $2, $3, $4, $5);';
-    //     let safeValues = [title, authors, description, image_URL, isbn13];
-
-    //     client.query(sql, safeValues)
-    //         .then(()=> {
-    //             response.redirect('/');
-    //         })
-    // }
+        client.query(sql, safeValues)
+            .then(()=> {
+                response.redirect('/');
+            })
+    }
 
     function getAllBooks(request, response){
   // go to the database, get all the tasks, and render them to the index.ejs page
 
-  let sql = 'SELECT * FROM books;';
-
-  client.query(sql)
-    .then(results => {
-      let tasks = results.rows;
+ 
       response.render('./pages/searches/show.ejs', {taskArray: tasks})
-    })
-}
+    }
+
 
     client.connect()
         .then(()=>{
