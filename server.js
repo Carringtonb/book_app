@@ -40,7 +40,7 @@ function collectFormData(request, response){
     if(isAuthorOrTitle === 'title'){
         url += `+intitle:${nameOfBookOrAuthor}`;
     } else if (isAuthorOrTitle === 'author'){
-        url += `+inauthor:${nameOfBookOrAuthor}`;c
+        url += `+inauthor:${nameOfBookOrAuthor}`;
     }
     superagent.get(url)
         .then(results => {
