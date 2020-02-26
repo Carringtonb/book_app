@@ -20,10 +20,24 @@ const PORT = process.env.PORT || 3001;
 app.get('/', renderHomePage);
 app.get('/newsearch', newSearch);
 app.post('/searches', collectFormData);
+app.get('/books/:book_id', displayOneBook);
 // app.post('/searches', addBooks);
 app.get('*', (request, response) => {
   response.status(404).send('this page does not exist')
 })
+
+function displayOneBook(request, response){
+    let id = request.params.book_id;
+    let sql = 'SELECT * FROM books WHERE id=$1;';
+    let safeValues = [id];
+
+    client.query(sql, safeValues)
+        .then(results =>{
+            response.render('./pages/books/detail.ejs', {database: results.rows});
+            // console.log(results.rows[0]);
+        })
+    // console.log(request.params.book_id);
+}
 
 function renderHomePage(request, response){
      let sql = 'SELECT * FROM books;';
