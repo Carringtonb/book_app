@@ -48,9 +48,9 @@ function collectFormData(request, response){
             const finalArray = resultsArray.map(book =>{
                 return new Book(book.volumeInfo);
             })
-            resultsArray.forEach(result => {
-                console.log(result);
-            })
+                console.log(finalArray, 'looking for isbn');
+            // resultsArray.forEach(result => {
+            // })
             response.render('./pages/searches/show.ejs', {books: finalArray});
         })
 }
@@ -60,7 +60,7 @@ function collectFormData(request, response){
         this.authors = obj.authors || 'no author available';
         this.description = obj.description || 'no description'
         this.image = (obj.imageLinks) ? obj.imageLinks.thumbnail.replace('http:', 'https:') : 'https://i.imgur.com/J5LVHEL.jpg';
-        
+        this.isbn = obj.industryIdentifiers[0].identifier || 'null';
     }
 
     client.connect()
