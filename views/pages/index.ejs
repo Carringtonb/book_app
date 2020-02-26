@@ -23,6 +23,15 @@
         </fieldset>
         <button type="submit">Search the Google Books API</button>
       </form>
+      <section>
+        <ul>
+          <% bookArray.forEach(book =>{ %>
+            <li><%= book.title %></li>
+            <li><%= book.author %></li>
+            <li>Total Books : <%= bookArray.length %></li>
+         <%  }) %>
+        </ul>
+      </section>
     </main>
   </body>
 </html>

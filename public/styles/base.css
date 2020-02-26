@@ -1,3 +1,14 @@
 *{
     background-color: burlywood;
+    display: grid;
+}
+
+/* img{
+    height: 20%;
+} */
+
+p {
+    word-wrap: normal;
+    margin: 5px;
+    
 }
