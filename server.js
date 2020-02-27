@@ -125,10 +125,11 @@ function collectFormData(request, response){
 
     function getAllBooks(request, response){
   // go to the database, get all the tasks, and render them to the index.ejs page
-
- 
       response.render('./pages/searches/show.ejs', {taskArray: tasks})
     }
+
+    //BUTTON FOR SHOW.EJS
+    
 
 
     client.connect()
