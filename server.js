@@ -31,7 +31,6 @@ app.get('/newsearch', newSearch);
 app.post('/searches', collectFormData);
 app.get('/books/:book_id', displayOneBook);
 app.put('/books/:book_id', updateOneBook);
-// app.post('/searches', addBooks);
 app.get('*', (request, response) => {
   response.status(404).send('this page does not exist')
 })
@@ -65,6 +64,7 @@ function updateOneBook(request, response){
             response.redirect('/');
         })
 }
+
 
 function renderHomePage(request, response){
      let sql = 'SELECT * FROM books;';
@@ -126,10 +126,13 @@ function collectFormData(request, response){
 
     function getAllBooks(request, response){
   // go to the database, get all the tasks, and render them to the index.ejs page
-
- 
       response.render('./pages/searches/show.ejs', {taskArray: tasks})
     }
+
+    //BUTTON FOR SHOW.EJS
+    // $('detail').click(function(){
+        
+    // }
 
 
     client.connect()
