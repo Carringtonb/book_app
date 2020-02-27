@@ -5,10 +5,10 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-require('ejs');
 const superagent = require('superagent');
 const pg = require('pg');
 const methodOverride = require('method-override');
+require('ejs');
 
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', err => console.error(err));
@@ -102,7 +102,7 @@ function collectFormData(request, response){
             response.render('./pages/searches/show.ejs', {books: finalArray});
         })
 }
-
+    // CONSTRUCTOR FUNCTION FOR BOOKS
     function Book(obj){
         this.title = obj.title || 'no title available';
         this.authors = obj.authors[0] || 'no author available';

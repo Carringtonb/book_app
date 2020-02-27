@@ -62,3 +62,6 @@ Session.vim
 
 # auto-generated tag files
 tags
+
+#envIgnorte dotenv file updates
+.env
