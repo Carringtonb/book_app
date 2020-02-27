@@ -4,7 +4,7 @@
   <head>
     <title>Book Collection</title>
     <link href="./styles/base.css" rel="stylesheet" type="text/css" />
-    <link href="./layout/base.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/layout.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <main>
@@ -13,7 +13,7 @@
         <li><%= book.title %></li>
         <p>Author: <%= book.authors %></p>
         <img src="<%= book.image %>" />
-        <p>Description: <%= book.description %></p>
+        <p class="description">Description: <%= book.description %></p>
         <% }); %>
     </main>
   </body>
