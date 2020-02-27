@@ -10,5 +10,5 @@ CREATE TABLE books (
     bookshelf VARCHAR(255)
 );
 
-INSERT INTO books (title, author, description, image_URL, ISBN13)
-VALUES('catcher in the rye', 'jd salinger', 'emo ass book', 'https://pictures.abebooks.com/isbn/9780316769174-us.jpg', '1827493847582')
+INSERT INTO books (title, author, description, image_URL, ISBN13, bookshelf)
+VALUES('catcher in the rye', 'jd salinger', 'emo ass book', 'https://pictures.abebooks.com/isbn/9780316769174-us.jpg', '1827493847582', 'fantasy')
