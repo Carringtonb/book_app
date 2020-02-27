@@ -108,7 +108,8 @@ function collectFormData(request, response){
         this.authors = obj.authors[0] || 'no author available';
         this.description = obj.description || 'no description'
         this.image = (obj.imageLinks) ? obj.imageLinks.thumbnail.replace('http:', 'https:') : 'https://i.imgur.com/J5LVHEL.jpg';
-        this.isbn = obj.industryIdentifiers[0].identifier || 'null';
+        this.isbn = obj.industryIdentifiers[0].identifier || 'null'
+        // this.bookshelf = obj.categories[0] || 'no bookshelf available';
     }
 
     function addBooks(request, response){
