@@ -28,6 +28,7 @@ h4 {
     font-size: 4em;
     margin:auto;
     text-align: center;
+    font: #401d12;
 }
 
 li{
@@ -36,4 +37,43 @@ li{
     margin-top: 3em;
     margin:auto;
     text-align: center;
+    border-radius: 1em;
+   
+}
+
+.getBetter {
+    background-color: #d9ae7a;
+    color: black;
+}
+
+.search{
+    height: 3em;
+    width: 40%;
+    border-radius: 1em;
+    justify-self: center;
+    margin: 2em;
+    background-color: #d9ae7a;
+}
+.searchTop{
+    height: 3em;
+    width: 40%;
+    border-radius: 1em;
+    justify-self: center;
+    margin: 2em;
+    background-color: #f0d4a2
+}
+#searchTitle {
+    background-color: #702513;
+    width: 100%;
+    color: #dfd0b7;
+}
+
+#searchButton {
+    color: white;
+    width: 30%;
+    margin: auto;
+    text-align: center;
+    background-color:#401d12;
+    height: 3em;
+    border-radius: 1em;
 }
