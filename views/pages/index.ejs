@@ -27,9 +27,9 @@
       <section>
         <ul>
           <% bookArray.forEach(book =>{ %>
+            <li class="book-detail"><a href='/books/<%= book.id %>'>more details</a></li>
             <li><%= book.title %></li>
             <li><%= book.author %></li>
-            <li class="book-detail"><a href='/books/<%= book.id %>'>more details</a></li>
             <li>Total Books : <%= bookArray.length %></li>
          <%  }) %>
         </ul>

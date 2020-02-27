@@ -10,10 +10,11 @@
     <main>
       <h4>My Book Collection</h4>
       <% books.forEach(book => { %>
-        <li><%= book.title %></li>
-        <p>Author: <%= book.authors %></p>
         <img src="<%= book.image %>" />
+        <li><%= book.title %></li>
+        <p><%= book.authors %></p>
         <p class="description">Description: <%= book.description %></p>
+        <p><%= book.isbn %></p>
         <% }); %>
     </main>
   </body>
