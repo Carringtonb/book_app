@@ -1,11 +1,15 @@
 *{
     background-color: burlywood;
     display: grid;
+    margin:auto;
+    text-align: center;
 }
 
-/* img{
-    height: 20%;
-} */
+img{
+    margin:auto;
+    height: 1fr;
+    width: 1fr;
+}
 
 p {
     word-wrap: normal;
