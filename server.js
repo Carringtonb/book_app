@@ -30,7 +30,7 @@ app.get('/', renderHomePage);
 app.get('/newsearch', newSearch);
 app.post('/searches', collectFormData);
 app.get('/books/:book_id', displayOneBook);
-app.put('/books/:book_id', updateOneBook);
+app.put('/update/:book_id', updateOneBook);
 app.get('*', (request, response) => {
   response.status(404).send('this page does not exist')
 })
@@ -51,16 +51,19 @@ function displayOneBook(request, response){
 }
 
 function updateOneBook(request, response){
-    console.log(request.params.book_id);
-    let {title, authors, description, image, isbn} = request.body;
+    console.log(request.params.book_id, '🤯', request.body);
+
+    ///////////////These values have to match what is in your schema file/////////////
+    let {title, author, description, image_URL, ISBN13} = request.body;
     let id = request.params.book_id;
 
-    let sql = 'UPDATE books SET title=$1, authors=$2, description=$3, image=$4, isbn=$5 WHERE id=$6;';
+    let sql = 'UPDATE books SET title=$1, author=$2, description=$3, image_URL=$4, ISBN13=$5 WHERE id=$6 RETURNING ID;';
 
-    let safeValues = [title, authors, description, image, isbn];
+    let safeValues = [title, author, description, image_URL, ISBN13, id];
 
     client.query(sql, safeValues)
-        .then(() => {
+        .then(results => {
+            console.log(results.rows)
             response.redirect('/');
         })
 }

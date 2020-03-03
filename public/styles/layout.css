@@ -40,6 +40,15 @@ li{
     border-radius: 1em;
    
 }
+#detailsPage{
+    justify-self: center;
+    font-size: 3em;
+    font-family: monospace;
+}
+
+.details{
+    margin: 1em;
+}
 
 .getBetter {
     background-color: #d9ae7a;
